@@ -39,49 +39,49 @@ def plot_predictions(test_labels, test_predictions, lims):
     plt.figtext(0.5,0.7,"R² = 0.9988" , fontsize=12)
     plt.show()
 
-# filename = "data.xlsx"
+filename = "data.xlsx"
 
-# df = pd.read_excel(path+"/"+filename)
-# df = df[df.columns].dropna(axis=1)
+df = pd.read_excel(path+"/"+filename)
+df = df[df.columns].dropna(axis=1)
 
 # # create a regressor object 
-# regressor = DecisionTreeRegressor()  
+regressor = DecisionTreeRegressor()  
 
-# target = df.pop('Max_Load (FEA)').values
-# features = df.values
+target = df.pop('Max_Load (FEA)').values
+features = df.values
 
-# features, target = shuffle(features, target)
+features, target = shuffle(features, target)
   
 
 
-# x_train, x_test, y_train, y_test = train_test_split(features, target, test_size=0.5)
+x_train, x_test, y_train, y_test = train_test_split(features, target, test_size=0.5)
 
 
 # # fit the regressor with X and Y data 
-# yo = regressor.fit(x_train, y_train) 
+fit = regressor.fit(x_train, y_train) 
 
 # # test the output by changing values, like 3750 
-# y_pred = regressor.predict(x_test) 
+y_pred = regressor.predict(x_test) 
 
-# print(regressor.score(x_train, y_train))
-# print(regressor.score(x_test, y_test))
-# print(regressor.get_depth())
-# print(regressor.get_n_leaves())
+print(regressor.score(x_train, y_train))
+print(regressor.score(x_test, y_test))
+print(regressor.get_depth())
+print(regressor.get_n_leaves())
 
-# pd.DataFrame(x_test).to_excel('x_test.xlsx', index=False)
-# pd.DataFrame(x_train).to_excel('x_train.xlsx', index=False)
-# pd.DataFrame(y_test).to_excel('y_test.xlsx', index=False)
-# pd.DataFrame(y_train).to_excel('y_train.xlsx', index=False)
-# pd.DataFrame(y_pred).to_excel('y_pred.xlsx', index=False)
+pd.DataFrame(x_test).to_excel('x_test.xlsx', index=False)
+pd.DataFrame(x_train).to_excel('x_train.xlsx', index=False)
+pd.DataFrame(y_test).to_excel('y_test.xlsx', index=False)
+pd.DataFrame(y_train).to_excel('y_train.xlsx', index=False)
+pd.DataFrame(y_pred).to_excel('y_pred.xlsx', index=False)
 
 
 
-# # fig = plt.figure(figsize=(25,20))
-# # _ = tree.plot_tree(regressor,
-# #                     feature_names=list(df.columns))
-# #                     # class_names=iris.target_names,
-# #                     # filled=True)
-# # fig.savefig("decistion_tree.png")
+fig = plt.figure(figsize=(25,20))
+_ = tree.plot_tree(regressor,
+                    feature_names=list(df.columns))
+                    # class_names=iris.target_names,
+                    # filled=True)
+fig.savefig("decistion_tree.png")
 
 filename1 = "y_pred.xlsx"
 filename2 = "y_test.xlsx"
